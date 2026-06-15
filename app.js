@@ -43,7 +43,7 @@ function updateHero(){
 
 async function loadPicks(){
   try{
-    const res = await fetch('data/todays_picks.json', {cache:'no-store'});
+    const res = await fetch('todays_picks.json', {cache:'no-store'});
     allPicks = await res.json();
     updateHero();
     render();
