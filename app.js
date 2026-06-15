@@ -3,6 +3,7 @@ const filters = document.querySelectorAll('.filter');
 const pickCount = document.querySelector('#pickCount');
 const avgEdge = document.querySelector('#avgEdge');
 const heroConfidence = document.querySelector('#heroConfidence');
+const bestBetCard = document.querySelector('#bestBetCard');
 let allPicks = [];
 
 function formatEdge(edge){
@@ -41,11 +42,47 @@ function updateHero(){
   heroConfidence.textContent = `${top}%`;
 }
 
+function renderBestBet(){
+  if(!bestBetCard || !allPicks.length) return;
+
+  const topPick = [...allPicks].sort((a,b) => Number(b.confidence || 0) - Number(a.confidence || 0))[0];
+
+  bestBetCard.innerHTML = `
+    <div class="best-bet-layout">
+      <div>
+        <span class="tier ${topPick.tier}">${topPick.tier}</span>
+        <h3>${topPick.pick}</h3>
+        <p>${topPick.matchup}</p>
+      </div>
+
+      <div class="best-bet-metrics">
+        <div>
+          <strong>${topPick.confidence}%</strong>
+          <small>Confidence</small>
+        </div>
+        <div>
+          <strong>${formatEdge(topPick.edge)}</strong>
+          <small>Model Edge</small>
+        </div>
+        <div>
+          <strong>${topPick.odds}</strong>
+          <small>Odds</small>
+        </div>
+      </div>
+    </div>
+
+    <p class="reason">
+      ${topPick.reason_1} • ${topPick.reason_2} • ${topPick.reason_3}
+    </p>
+  `;
+}
+
 async function loadPicks(){
   try{
     const res = await fetch('todays_picks.json', {cache:'no-store'});
     allPicks = await res.json();
     updateHero();
+    renderBestBet();
     render();
   }catch(err){
     picksGrid.innerHTML = '<p class="reason">Prediction data could not be loaded. Check data/todays_picks.json.</p>';
