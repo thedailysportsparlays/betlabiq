@@ -15,5 +15,47 @@ on:
           - nba
           - nhl
           - soccer
+      slate_date:
+        description: "Slate date to update"
+        required: false
+        default: "today"
+
   schedule:
+    # Runs daily at 12:05 AM Mountain Time during daylight savings.
+    # GitHub Actions cron uses UTC.
     - cron: "5 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-picks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run prediction updater
+        run: |
+          python scripts/update_predictions.py \
+            --sport "${{ github.event.inputs.sport || 'all' }}" \
+            --slate-date "${{ github.event.inputs.slate_date || 'today' }}"
+
+      - name: Validate JSON files
+        run: |
+          python -m json.tool data/todays_picks.json > /dev/null
+          python -m json.tool data/model_status.json > /dev/null
+
+      - name: Commit updated prediction data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/todays_picks.json data/model_status.json
+          git commit -m "Update daily picks" || echo "No changes to commit"
+          git push
