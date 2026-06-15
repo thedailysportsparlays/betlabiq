@@ -1,9 +1,0 @@
-{
-  "updated": "2026-06-15",
-  "sample": true,
-  "records": [
-    {"sport": "MLB", "wins": 18, "losses": 12, "roi": 7.8},
-    {"sport": "Soccer", "wins": 11, "losses": 6, "roi": 10.4},
-    {"sport": "NHL", "wins": 7, "losses": 5, "roi": 4.2}
-  ]
-}
