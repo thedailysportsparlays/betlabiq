@@ -17,13 +17,19 @@ function card(p){
     <article class="pick-card" data-sport="${p.sport}">
       <div class="pick-meta"><span>${p.sport} • ${p.market}</span>${premium}</div>
       <h3>${p.matchup}</h3>
-      <div class="pick-main">${p.pick}</div>
+      <div class="pick-label">Recommended Pick</div>
+      <div class="pick-main">${pickText}</div>
+      
       <div class="metrics">
         <div class="metric"><strong>${p.confidence}%</strong><small>Confidence</small></div>
         <div class="metric"><strong>${formatEdge(p.edge)}</strong><small>Model Edge</small></div>
         <div class="metric"><strong>${p.odds}</strong><small>Odds</small></div>
       </div>
-      <div class="pick-meta"><span class="tier ${p.tier}">${p.tier}</span><span>${p.start_time}</span></div>
+      <div class="pick-meta">
+  <span class="tier ${p.tier}">${p.tier}</span>
+  <span class="risk-chip">${p.risk || "Standard Risk"}</span>
+  <span>${p.start_time}</span>
+</div>
       <p class="reason">${p.reason_1} • ${p.reason_2} • ${p.reason_3}</p>
     </article>`;
 }
