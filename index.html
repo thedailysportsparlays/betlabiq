@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BetLabIQ | Model-Driven Daily Picks</title>
+  <meta name="description" content="BetLabIQ is a model-first sports analytics dashboard for daily picks, confidence tiers, model edge, and transparent tracking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="BetLabIQ home">
+      <span class="brand-mark">BIQ</span>
+      <span><strong>BetLabIQ</strong><small>Model-first picks</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#picks">Picks</a>
+      <a href="#edge">Model Edge</a>
+      <a href="#track">Track Record</a>
+      <a href="#premium">Premium</a>
+    </nav>
+    <a class="header-cta" href="#join">Join Watchlist</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Built for disciplined bettors, not noise chasing.</p>
+        <h1>Daily sports picks with model edge, confidence tiers, and transparent results.</h1>
+        <p class="hero-text">BetLabIQ turns slate research into a clean decision dashboard: starting pitching, market edge, momentum, implied probability, and risk notes in one place.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#picks">View Today’s Board</a>
+          <a class="button ghost" href="#premium">See Premium Plan</a>
+        </div>
+        <div class="trust-row">
+          <span>MLB</span><span>NBA</span><span>NHL</span><span>Soccer</span><span>UFC</span>
+        </div>
+      </div>
+      <aside class="hero-card glass">
+        <div class="card-topline">
+          <span>Today’s Signal</span>
+          <span class="live-dot">Live board</span>
+        </div>
+        <div class="signal-score">
+          <span id="heroConfidence">71%</span>
+          <small>Top Pick Confidence</small>
+        </div>
+        <div class="mini-grid">
+          <div><strong id="pickCount">0</strong><small>Picks loaded</small></div>
+          <div><strong id="avgEdge">0.0%</strong><small>Avg edge</small></div>
+        </div>
+        <p class="risk-note">No “locks.” Every pick includes the why, the edge, and the risk.</p>
+      </aside>
+    </section>
+
+    <section class="ticker" aria-label="site highlights">
+      <span>Model Probability</span><span>Implied Odds</span><span>Confidence Tiers</span><span>Pitching Matchups</span><span>Closing Line Value</span><span>Transparent ROI</span>
+    </section>
+
+    <section id="picks" class="section board-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Daily board</p>
+          <h2>Today’s picks dashboard</h2>
+        </div>
+        <div class="filters" role="group" aria-label="Pick filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="MLB">MLB</button>
+          <button class="filter" data-filter="NBA">NBA</button>
+          <button class="filter" data-filter="NHL">NHL</button>
+          <button class="filter" data-filter="Soccer">Soccer</button>
+        </div>
+      </div>
+      <div id="picksGrid" class="picks-grid"></div>
+    </section>
+
+    <section id="edge" class="section split">
+      <div>
+        <p class="eyebrow">Your angle</p>
+        <h2>A cleaner way to read the slate.</h2>
+        <p>Instead of dumping picks, BetLabIQ ranks opportunities by probability gap, market edge, confidence tier, and risk profile. The goal is to make the best bet obvious and the risky bet avoidable.</p>
+      </div>
+      <div class="edge-stack">
+        <div class="edge-card"><span>01</span><strong>Market Gap</strong><p>Compares model probability against implied probability.</p></div>
+        <div class="edge-card"><span>02</span><strong>Confidence Tier</strong><p>Separates high-conviction picks from watchlist leans.</p></div>
+        <div class="edge-card"><span>03</span><strong>Reason Codes</strong><p>Pitching, form, pace, matchup, injury, and price logic.</p></div>
+      </div>
+    </section>
+
+    <section id="track" class="section stats-panel glass">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Transparency</p>
+          <h2>Track record snapshot</h2>
+        </div>
+        <span class="badge">Sample data</span>
+      </div>
+      <div class="stats-grid">
+        <div><strong>58.4%</strong><small>Win Rate</small></div>
+        <div><strong>+8.7%</strong><small>Model ROI</small></div>
+        <div><strong>63%</strong><small>High Tier Hit Rate</small></div>
+        <div><strong>14</strong><small>Days Tracked</small></div>
+      </div>
+    </section>
+
+    <section id="premium" class="section pricing-section">
+      <div class="section-heading center">
+        <p class="eyebrow">Founder offer</p>
+        <h2>Start simple. Prove the model. Earn trust.</h2>
+        <p>Launch with a free board first, then convert premium subscribers after 7–14 days of posted results.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="price-card glass">
+          <span class="plan">Free</span>
+          <h3>$0</h3>
+          <p>Best for building trust and search traffic.</p>
+          <ul><li>1–3 daily picks</li><li>Basic confidence</li><li>Public track record</li></ul>
+          <a class="button ghost" href="#join">Join Free</a>
+        </article>
+        <article class="price-card featured">
+          <span class="plan">Founder Premium</span>
+          <h3>$9–19/mo</h3>
+          <p>Founder pricing for early subscribers.</p>
+          <ul><li>Full slate board</li><li>Model edge %</li><li>Premium reasoning</li><li>Risk notes</li></ul>
+          <a class="button primary" href="#join">Get Early Access</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="join" class="section join glass">
+      <div>
+        <p class="eyebrow">First subscriber funnel</p>
+        <h2>Join the BetLabIQ watchlist</h2>
+        <p>Collect emails now. Add Stripe, Gumroad, Beehiiv, or Patreon when the track record is ready.</p>
+      </div>
+      <form class="signup" onsubmit="event.preventDefault(); alert('Demo form: connect this to Beehiiv, Mailchimp, ConvertKit, or Formspree.');">
+        <input type="email" placeholder="you@example.com" required />
+        <button class="button primary" type="submit">Join</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>BetLabIQ</strong>
+    <p>For educational and entertainment purposes only. Sports betting involves risk. Never bet more than you can afford to lose.</p>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
