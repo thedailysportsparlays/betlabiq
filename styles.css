@@ -351,16 +351,24 @@ grid-template-columns:1fr;
 }
 
 }
-/* EMAIL CAPTURE */
+/* EMAIL CAPTURE - FULL WIDTH BEEHIIV */
 
-#join{
+.email-only-section{
   max-width:1200px;
-  margin:0 auto 100px;
-  padding:0 24px;
+  margin:70px auto 90px;
+  padding:46px;
+  border-radius:34px;
+  display:block;
 }
 
 .beehiiv-wrapper{
   width:100%;
-  display:flex;
-  justify-content:center;
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.beehiiv-wrapper iframe{
+  width:100% !important;
+  max-width:100% !important;
+  border:0 !important;
 }
