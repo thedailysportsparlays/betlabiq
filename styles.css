@@ -351,24 +351,114 @@ grid-template-columns:1fr;
 }
 
 }
-/* EMAIL CAPTURE - FULL WIDTH BEEHIIV */
+/* ================================
+   EMAIL CAPTURE V2
+================================ */
 
-.email-only-section{
-  max-width:1200px;
-  margin:70px auto 90px;
-  padding:46px;
-  border-radius:34px;
-  display:block;
+.email-section{
+  padding-top:70px;
+  padding-bottom:90px;
+}
+
+.email-shell{
+  max-width:1280px;
+  margin:0 auto;
+  border-radius:36px;
+  padding:42px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(360px,520px);
+  gap:34px;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.email-shell::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:4px;
+  background:linear-gradient(90deg,var(--green),var(--blue),var(--purple),var(--gold));
+}
+
+.email-copy{
+  position:relative;
+  z-index:1;
+}
+
+.email-copy h2{
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:.92;
+  letter-spacing:-.06em;
+  margin:0 0 18px;
+}
+
+.email-copy p{
+  color:var(--muted);
+  max-width:720px;
+  font-size:18px;
+}
+
+.email-trust-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:26px;
+}
+
+.email-trust-row span{
+  padding:9px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-weight:850;
+  font-size:13px;
+}
+
+.email-form-card{
+  position:relative;
+  z-index:1;
+  border-radius:28px;
+  padding:26px;
+  background:rgba(0,0,0,.22);
+  border:1px solid var(--line);
+}
+
+.email-kicker{
+  color:var(--green);
+  font-size:12px;
+  font-weight:950;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  margin:0 0 14px;
 }
 
 .beehiiv-wrapper{
   width:100%;
-  max-width:1000px;
-  margin:0 auto;
+  overflow:hidden;
+  border-radius:22px;
 }
 
 .beehiiv-wrapper iframe{
   width:100% !important;
   max-width:100% !important;
   border:0 !important;
+}
+
+.email-note{
+  color:var(--muted);
+  font-size:13px;
+  margin:16px 0 0;
+}
+
+@media(max-width:900px){
+  .email-shell{
+    grid-template-columns:1fr;
+    padding:28px;
+  }
+
+  .email-copy h2{
+    font-size:clamp(36px,12vw,56px);
+  }
 }
