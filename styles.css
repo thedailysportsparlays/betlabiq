@@ -352,17 +352,35 @@ grid-template-columns:1fr;
 
 }
 
-/* BEEHIIV */
-
-.beehiiv-container{
+.email-card{
+  border-radius:28px;
+  padding:28px;
+  max-width:520px;
   width:100%;
-  max-width:550px;
-  margin:auto;
 }
 
-.beehiiv-container iframe{
+.email-card h3{
+  font-size:clamp(28px,4vw,42px);
+  margin:8px 0 12px;
+  letter-spacing:-.05em;
+  line-height:1;
+}
+
+.email-card p{
+  color:var(--muted);
+}
+
+.beehiiv-wrapper{
+  margin-top:20px;
   width:100%;
-  border:none;
+  overflow:hidden;
   border-radius:18px;
 }
 
+.beehiiv-wrapper iframe{
+  width:100% !important;
+  max-width:100% !important;
+  min-height:220px;
+  border:0 !important;
+  border-radius:18px !important;
+}
