@@ -4,11 +4,120 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BetLabIQ | Daily Model-Driven Sports Picks</title>
-  <meta name="description" content="BetLabIQ provides daily model-driven sports picks with confidence ratings, transparent reasoning, and premium betting intelligence." />
+  <meta name="description" content="BetLabIQ provides daily model-driven sports picks, confidence ratings, market edge, and premium betting intelligence for everyday bettors." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .simple-hero {
+      min-height: 76vh;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+      padding: 90px clamp(18px,5vw,72px) 56px;
+    }
+
+    .hero-proof-card {
+      border-radius: 32px;
+      padding: 30px;
+    }
+
+    .hero-proof-card h3 {
+      font-size: clamp(34px,5vw,56px);
+      margin: 10px 0;
+      letter-spacing: -0.06em;
+      line-height: .95;
+    }
+
+    .launch-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .launch-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .featured-pick-section[hidden] {
+      display: none;
+    }
+
+    .featured-pick-card {
+      border-radius: 32px;
+      padding: 28px;
+    }
+
+    .three-tier {
+      grid-template-columns: repeat(3, minmax(0, 360px));
+      align-items: stretch;
+    }
+
+    .price-subtitle {
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: -4px;
+    }
+
+    .popular-badge {
+      display: inline-flex;
+      margin: 10px 0 4px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(77,242,163,.16);
+      border: 1px solid rgba(77,242,163,.35);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .platinum-card {
+      background:
+        linear-gradient(150deg, rgba(255,209,102,.12), rgba(155,124,255,.08)),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(255,209,102,.32);
+      box-shadow: var(--shadow);
+    }
+
+    .pricing-note {
+      max-width: 820px;
+      margin: 28px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    @media(max-width: 980px) {
+      .simple-hero {
+        grid-template-columns: 1fr;
+        padding-top: 58px;
+      }
+
+      .three-tier {
+        grid-template-columns: 1fr;
+        max-width: 620px;
+        margin-inline: auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -25,9 +134,8 @@
     </a>
 
     <nav class="nav">
-      <a href="#today">Today’s Picks</a>
       <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
+      <a href="#join">Join</a>
     </nav>
 
     <a class="header-cta" href="#pricing">View Plans</a>
@@ -35,137 +143,85 @@
 
   <main id="top">
 
-    <!-- HERO -->
-    <section class="hero">
+    <section class="simple-hero">
       <div class="hero-copy">
         <p class="eyebrow">Daily sports picks powered by probability, not hype.</p>
         <h1>Find the Edge Before the Market Moves.</h1>
+
         <p class="hero-text">
-          BetLabIQ gives everyday bettors a cleaner way to follow daily picks:
-          recommended plays, confidence ratings, model edge, and simple reasoning without fake locks or noise.
+          BetLabIQ is building a cleaner daily sports betting board for everyday bettors:
+          model-driven picks, confidence ratings, market edge, and simple reasoning without fake locks.
         </p>
 
         <div class="hero-actions">
-          <a class="button primary" href="#today">View Today’s Picks</a>
-          <a class="button ghost" href="#pricing">Compare Plans</a>
+          <a class="button primary" href="#pricing">Become a Founding Member</a>
+          <a class="button ghost" href="#join">Join Free List</a>
         </div>
 
         <div class="trust-row">
-          <span>⚾ MLB</span>
-          <span>🏀 WNBA/NBA</span>
+          <span>⚾ MLB First</span>
+          <span>🏀 WNBA/NBA Next</span>
           <span>🏒 NHL</span>
           <span>⚽ Soccer</span>
-          <span>🥊 UFC</span>
         </div>
       </div>
 
-      <aside class="hero-card glass">
-        <div class="card-topline">
-          <span>Today’s Board</span>
-          <span class="live-dot">Live</span>
-        </div>
-
-        <div class="signal-score">
-          <span id="heroConfidence">--</span>
-          <small>Top Pick Confidence</small>
-        </div>
-
-        <div class="mini-grid">
-          <div>
-            <strong id="pickCount">0</strong>
-            <small>Picks loaded</small>
-          </div>
-          <div>
-            <strong id="avgEdge">0.0%</strong>
-            <small>Avg edge</small>
-          </div>
-        </div>
-
+      <aside class="hero-proof-card glass">
+        <p class="eyebrow">Founding Member Access</p>
+        <h3>Built for bettors who want process over hype.</h3>
         <p class="risk-note">
-          No fake locks. Every pick includes the recommendation, reasoning, and risk.
+          Start with the free list. Upgrade when you want daily premium picks,
+          deeper reasoning, props, parlays, and full-slate analysis.
         </p>
+
+        <div class="launch-list">
+          <div class="launch-item">✓ Daily model-driven sports picks</div>
+          <div class="launch-item">✓ Confidence ratings and risk tiers</div>
+          <div class="launch-item">✓ Premium plans built to scale over time</div>
+        </div>
       </aside>
     </section>
 
-    <!-- BEST BET -->
-    <section id="best-bet" class="section best-bet-section">
+    <section id="featured-pick" class="section featured-pick-section" hidden>
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Best Bet of the Day</p>
-          <h2>Today’s Top Model Signal</h2>
+          <p class="eyebrow">Optional Daily Preview</p>
+          <h2>Today’s Featured Pick</h2>
         </div>
-        <span class="badge">Auto-selected</span>
+        <span class="badge">Updated from JSON</span>
       </div>
 
-      <article id="bestBetCard" class="best-bet-card glass">
-        <p class="reason">Loading today’s top pick...</p>
+      <article class="featured-pick-card glass">
+        <span id="featuredTier" class="tier Medium">Preview</span>
+        <h3 id="featuredPickTitle">Loading...</h3>
+        <p id="featuredMatchup" class="reason"></p>
+
+        <div class="metrics">
+          <div class="metric">
+            <strong id="featuredConfidence">--</strong>
+            <small>Confidence</small>
+          </div>
+          <div class="metric">
+            <strong id="featuredEdge">--</strong>
+            <small>Model Edge</small>
+          </div>
+          <div class="metric">
+            <strong id="featuredOdds">--</strong>
+            <small>Odds</small>
+          </div>
+        </div>
+
+        <p id="featuredReason" class="reason"></p>
       </article>
     </section>
 
-    <!-- TODAY'S PICKS -->
-    <section id="today" class="section board-section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Daily Board</p>
-          <h2>Today’s Picks</h2>
-          <p class="section-subtitle">
-            Start free with the public board. Upgrade when you want the full slate, deeper analysis, props, and premium plays.
-          </p>
-        </div>
-
-        <div class="filters" role="group" aria-label="Pick filters">
-          <button class="filter active" data-filter="all">All</button>
-          <button class="filter" data-filter="MLB">MLB</button>
-          <button class="filter" data-filter="WNBA">WNBA</button>
-          <button class="filter" data-filter="NBA">NBA</button>
-          <button class="filter" data-filter="NHL">NHL</button>
-          <button class="filter" data-filter="Soccer">Soccer</button>
-        </div>
-      </div>
-
-      <div id="picksGrid" class="picks-grid"></div>
-    </section>
-
-    <!-- YESTERDAY RESULTS -->
-    <section id="results" class="section stats-panel glass">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Proof Builds Trust</p>
-          <h2>Yesterday’s Results</h2>
-          <p class="section-subtitle">
-            Public tracking starts here. This section will become the proof layer for converting free users into paid members.
-          </p>
-        </div>
-        <span class="badge">Tracking starts today</span>
-      </div>
-
-      <div class="stats-grid">
-        <div>
-          <strong>0-0</strong>
-          <small>Yesterday</small>
-        </div>
-        <div>
-          <strong>0.0%</strong>
-          <small>ROI</small>
-        </div>
-        <div>
-          <strong>0</strong>
-          <small>Public Picks Tracked</small>
-        </div>
-        <div>
-          <strong>Live Soon</strong>
-          <small>Results Feed</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
     <section id="pricing" class="section pricing-section">
       <div class="section-heading center">
-        <p class="eyebrow">Premium Access</p>
-        <h2>Choose the Plan That Fits Your Betting Style</h2>
+        <p class="eyebrow">Founding Member Pricing</p>
+        <h2>Choose the BetLabIQ Plan That Fits Your Betting Style</h2>
         <p>
-          Start with the free board. Upgrade when you want more picks, deeper analysis, and stronger daily betting intelligence.
+          Start simple. Upgrade only when you want more picks, deeper analysis,
+          and premium betting intelligence.
         </p>
       </div>
 
@@ -207,7 +263,7 @@
         <article class="price-card platinum-card">
           <span class="plan">Platinum Premium</span>
           <h3>$300/mo</h3>
-          <p class="price-subtitle">$10/day for the highest-level access.</p>
+          <p class="price-subtitle">$10/day for highest-level access.</p>
 
           <ul>
             <li>Everything in Gold</li>
@@ -223,97 +279,27 @@
       </div>
 
       <p class="pricing-note">
-        Premium plans are for educational and entertainment purposes only. No pick is guaranteed.
-        Sports betting involves risk.
+        Premium plans are for educational and entertainment purposes only.
+        No pick is guaranteed. Sports betting involves risk.
       </p>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="section">
-      <div class="section-heading center">
-        <p class="eyebrow">Built for Trust</p>
-        <h2>Why Bettors Will Follow BetLabIQ</h2>
-        <p>
-          The first goal is simple: build a transparent daily board that users trust enough to follow before premium access opens.
-        </p>
-      </div>
-
-      <div class="pricing-grid three-tier">
-        <article class="price-card glass">
-          <span class="plan">Transparent</span>
-          <p>
-            “The value is in seeing the pick, the confidence, the edge, and the reasoning in one clean place.”
-          </p>
-        </article>
-
-        <article class="price-card glass">
-          <span class="plan">Simple</span>
-          <p>
-            “No fake lock culture. Just a cleaner way to understand where the model sees value.”
-          </p>
-        </article>
-
-        <article class="price-card glass">
-          <span class="plan">Scalable</span>
-          <p>
-            “Start with MLB, prove the results, then expand into props, parlays, and more sports.”
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section split">
+    <section id="join" class="section join glass">
       <div>
-        <p class="eyebrow">FAQ</p>
-        <h2>Simple Answers Before You Subscribe</h2>
-        <p>
-          BetLabIQ is being built around transparency, discipline, and daily consistency.
-        </p>
-      </div>
-
-      <div class="edge-stack">
-        <div class="edge-card">
-          <span>01</span>
-          <strong>Are picks guaranteed?</strong>
-          <p>No. No sports betting pick is guaranteed. BetLabIQ focuses on probability, not certainty.</p>
-        </div>
-
-        <div class="edge-card">
-          <span>02</span>
-          <strong>What do free users get?</strong>
-          <p>Free users get access to the public daily board and selected model-backed picks.</p>
-        </div>
-
-        <div class="edge-card">
-          <span>03</span>
-          <strong>What does premium unlock?</strong>
-          <p>Premium unlocks deeper picks, more markets, full-slate analysis, props, totals, and future premium reports.</p>
-        </div>
-
-        <div class="edge-card">
-          <span>04</span>
-          <strong>When are picks updated?</strong>
-          <p>The goal is to refresh the board daily before major slates begin.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EMAIL CAPTURE -->
-    <section id="subscribe" class="section join glass">
-      <div>
-        <p class="eyebrow">Get the Free Board</p>
+        <p class="eyebrow">Free Launch List</p>
         <h2>Get BetLabIQ Picks in Your Inbox</h2>
         <p>
-          Join free while the public track record is being built. Premium access will open after the first results sample is posted.
+          Join free while the public track record is being built.
+          Founding premium access opens after the first results sample is posted.
         </p>
       </div>
 
       <form class="signup" onsubmit="event.preventDefault(); alert('Demo form: connect this to Beehiiv, Mailchimp, ConvertKit, or Formspree.');">
         <input type="email" placeholder="you@example.com" required />
-        <button class="button primary" type="submit">Get Free Picks</button>
+        <button class="button primary" type="submit">Join Free</button>
       </form>
     </section>
+
   </main>
 
   <footer class="footer">
@@ -322,8 +308,52 @@
       Educational and entertainment purposes only. Sports betting involves risk.
       Never bet more than you can afford to lose.
     </p>
+
+    <div class="footer-cta">
+      <a class="button ghost" href="#pricing">View Plans</a>
+      <a class="button ghost" href="#join">Join Free List</a>
+    </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script>
+    async function loadFeaturedPick() {
+      const section = document.querySelector('#featured-pick');
+
+      try {
+        const response = await fetch('data/featured_pick.json', { cache: 'no-store' });
+
+        if (!response.ok) {
+          section.hidden = true;
+          return;
+        }
+
+        const pick = await response.json();
+
+        if (!pick || !pick.pick) {
+          section.hidden = true;
+          return;
+        }
+
+        section.hidden = false;
+
+        document.querySelector('#featuredTier').textContent = pick.tier || 'Preview';
+        document.querySelector('#featuredTier').className = `tier ${pick.tier || 'Medium'}`;
+        document.querySelector('#featuredPickTitle').textContent = pick.pick;
+        document.querySelector('#featuredMatchup').textContent = pick.matchup || '';
+        document.querySelector('#featuredConfidence').textContent = pick.confidence ? `${pick.confidence}%` : '--';
+        document.querySelector('#featuredEdge').textContent = pick.edge ? `+${pick.edge}%` : '--';
+        document.querySelector('#featuredOdds').textContent = pick.odds || '--';
+        document.querySelector('#featuredReason').textContent = [
+          pick.reason_1,
+          pick.reason_2,
+          pick.reason_3
+        ].filter(Boolean).join(' • ');
+      } catch (error) {
+        section.hidden = true;
+      }
+    }
+
+    loadFeaturedPick();
+  </script>
 </body>
 </html>
