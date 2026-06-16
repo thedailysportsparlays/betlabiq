@@ -351,3 +351,16 @@ grid-template-columns:1fr;
 }
 
 }
+/* EMAIL CAPTURE */
+
+#join{
+  max-width:1200px;
+  margin:0 auto 100px;
+  padding:0 24px;
+}
+
+.beehiiv-wrapper{
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
