@@ -355,9 +355,11 @@ grid-template-columns:1fr;
    EMAIL CAPTURE V2
 ================================ */
 
-.email-section{
-  padding-top:70px;
-  padding-bottom:90px;
+.email-only-section{
+  max-width:900px;
+  margin:70px auto 90px;
+  padding:38px;
+  border-radius:34px;
 }
 
 .email-shell{
