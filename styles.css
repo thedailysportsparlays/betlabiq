@@ -351,16 +351,3 @@ grid-template-columns:1fr;
 }
 
 }
-
-.beehiiv-wrapper{
-  width:100%;
-  max-width:1100px;
-  margin:32px auto 0;
-  overflow:hidden;
-  border-radius:24px;
-}
-
-.beehiiv-wrapper iframe{
-  width:100% !important;
-  border:none !important;
-}
