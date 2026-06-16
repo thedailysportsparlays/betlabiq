@@ -352,35 +352,17 @@ grid-template-columns:1fr;
 
 }
 
-.email-card{
-  border-radius:28px;
-  padding:28px;
-  max-width:520px;
-  width:100%;
-}
-
-.email-card h3{
-  font-size:clamp(28px,4vw,42px);
-  margin:8px 0 12px;
-  letter-spacing:-.05em;
-  line-height:1;
-}
-
-.email-card p{
-  color:var(--muted);
-}
+/* BEEHIIV FORM */
 
 .beehiiv-wrapper{
-  margin-top:20px;
   width:100%;
+  max-width:1100px;
+  margin:32px auto 0;
   overflow:hidden;
-  border-radius:18px;
+  border-radius:24px;
 }
 
 .beehiiv-wrapper iframe{
   width:100% !important;
-  max-width:100% !important;
-  min-height:220px;
-  border:0 !important;
-  border-radius:18px !important;
+  border:none !important;
 }
