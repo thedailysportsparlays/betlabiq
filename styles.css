@@ -352,3 +352,17 @@ grid-template-columns:1fr;
 
 }
 
+/* BEEHIIV */
+
+.beehiiv-container{
+  width:100%;
+  max-width:550px;
+  margin:auto;
+}
+
+.beehiiv-container iframe{
+  width:100%;
+  border:none;
+  border-radius:18px;
+}
+
