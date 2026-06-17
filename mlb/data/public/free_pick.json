@@ -1,6 +1,8 @@
 {
+  "pick_id": "2026-06-18_824911_atlanta_braves",
   "date": "2026-06-18",
   "sport": "MLB",
+  "game_pk": "824911",
   "matchup": "San Francisco Giants @ Atlanta Braves",
   "game_time": "05:15 PM MT",
   "pick": "Atlanta Braves",
@@ -13,5 +15,8 @@
   "reason_3": "Highest-rated qualifying play on today's board",
   "risk": "Monitor line movement and confirmed lineups.",
   "blowout_score": 4.951,
+  "result_status": "Pending",
+  "source": "daily_winners",
+  "created_at": "2026-06-17T15:26:32.572287",
   "email_subject": "\ud83c\udfaf BetLabIQ Today\u2019s Pick | San Francisco Giants @ Atlanta Braves"
 }
