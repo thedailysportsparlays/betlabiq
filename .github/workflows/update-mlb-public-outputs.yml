@@ -2,8 +2,11 @@ name: Update MLB Public Outputs
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 * * *"
+  push:
+    paths:
+      - "mlb/data/raw/MLB_Prediction_Model.xlsx"
+      - "mlb/scripts/build_free_pick_from_excel.py"
+      - ".github/workflows/update-mlb-public-outputs.yml"
 
 permissions:
   contents: write
@@ -15,13 +18,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Show MLB folder
         run: |
-          ls -la
-          ls -la MLB || true
+          echo "Current directory:"
+          pwd
+          echo "MLB files found:"
+          find mlb -maxdepth 5 -type f
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,33 +34,23 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas openpyxl numpy
+          pip install pandas openpyxl
 
       - name: Build MLB public outputs
         run: |
-          python MLB/build_public_outputs.py
+          python mlb/scripts/build_free_pick_from_excel.py
 
       - name: Validate generated JSON files
         run: |
-          python -m json.tool MLB/public_outputs/todays_picks.json > /dev/null
-          python -m json.tool MLB/public_outputs/todays_games.json > /dev/null
-          python -m json.tool MLB/public_outputs/site_status.json > /dev/null
+          python -m json.tool mlb/data/public/public_games.json > /dev/null
+          python -m json.tool mlb/data/public/free_pick.json > /dev/null
 
       - name: Commit generated files
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
-          git pull --rebase origin main
-
-          git add MLB/public_outputs/
-
-          if git diff --cached --quiet; then
-            echo "No generated changes to commit."
-            exit 0
-          fi
-
-          git commit -m "Update MLB public outputs"
-
-          git pull --rebase origin main
-          git push origin main
+          git add mlb/data/public/public_games.json
+          git add mlb/data/public/free_pick.json
+          git add mlb/emails/generated/daily_free_pick.md
+          git commit -m "Update MLB public outputs" || echo "No changes to commit"
+          git push
