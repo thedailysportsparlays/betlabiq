@@ -1,0 +1,43 @@
+name: Update MLB Public Outputs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-mlb-public-outputs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas openpyxl
+
+      - name: Build MLB public outputs
+        run: |
+          python mlb/scripts/build_public_mlb_outputs.py
+
+      - name: Validate JSON files
+        run: |
+          python -m json.tool mlb/data/public/public_games.json > /dev/null
+          python -m json.tool mlb/data/public/free_pick.json > /dev/null
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add mlb/data/public/public_games.json
+          git add mlb/data/public/free_pick.json
+          git add mlb/emails/generated/daily_free_pick.md
+          git commit -m "Update MLB public outputs" || echo "No changes to commit"
+          git push
