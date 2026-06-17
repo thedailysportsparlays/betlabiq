@@ -38,7 +38,7 @@ jobs:
 
       - name: Build MLB public outputs
         run: |
-          python mlb/scripts/build_public_mlb_outputs.py
+          python mlb/scripts/build_free_pick_from_excel.py
 
       - name: Validate generated JSON files
         run: |
