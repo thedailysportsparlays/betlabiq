@@ -280,45 +280,50 @@
   </footer>
 
   <script>
-    async function loadFeaturedPick() {
-      const section = document.querySelector('#featured-pick');
+async function loadMlbTicker() {
+  const track = document.getElementById("mlbTickerTrack");
+  if (!track) return;
 
-      try {
-        const response = await fetch('data/featured_pick.json', { cache: 'no-store' });
+  try {
+    const response = await fetch("./mlb/data/public/public_games.json?v=" + Date.now());
 
-        if (!response.ok) {
-          section.hidden = true;
-          return;
-        }
-
-        const pick = await response.json();
-
-        if (!pick || !pick.pick) {
-          section.hidden = true;
-          return;
-        }
-
-        section.hidden = false;
-
-        document.querySelector('#featuredTier').textContent = pick.tier || 'Preview';
-        document.querySelector('#featuredTier').className = `tier ${pick.tier || 'Medium'}`;
-        document.querySelector('#featuredPickTitle').textContent = pick.pick;
-        document.querySelector('#featuredMatchup').textContent = pick.matchup || '';
-        document.querySelector('#featuredConfidence').textContent = pick.confidence ? `${pick.confidence}%` : '--';
-        document.querySelector('#featuredEdge').textContent = pick.edge ? `+${pick.edge}%` : '--';
-        document.querySelector('#featuredOdds').textContent = pick.odds || '--';
-        document.querySelector('#featuredReason').textContent = [
-          pick.reason_1,
-          pick.reason_2,
-          pick.reason_3
-        ].filter(Boolean).join(' • ');
-      } catch (error) {
-        section.hidden = true;
-      }
+    if (!response.ok) {
+      throw new Error("public_games.json not found");
     }
 
-    loadFeaturedPick();
-  </script>
+    const games = await response.json();
+
+    if (!Array.isArray(games) || games.length === 0) {
+      track.innerHTML = `
+        <span class="mlb-ticker-item">
+          Board updates after model refresh
+        </span>
+      `;
+      return;
+    }
+
+    const tickerItems = games.map(game => `
+      <span class="mlb-ticker-item">
+        <span>${game.matchup || "MLB Matchup"}</span>
+        <span class="mlb-ticker-time">${game.game_time || "TBD"}</span>
+        <span class="mlb-ticker-lock">PREMIUM</span>
+      </span>
+    `).join('<span class="mlb-ticker-divider">•</span>');
+
+    track.innerHTML = tickerItems + tickerItems;
+
+  } catch (error) {
+    console.error("MLB ticker error:", error);
+    track.innerHTML = `
+      <span class="mlb-ticker-item">
+        MLB board loading soon
+      </span>
+    `;
+  }
+}
+
+loadMlbTicker();
+</script>
   <script>
 async function loadMlbTicker() {
 
