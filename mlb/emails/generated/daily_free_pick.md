@@ -1,16 +1,16 @@
 # 🎯 GAME OF THE DAY
 
-## New York Mets @ Cincinnati Reds
+## Colorado Rockies @ Chicago Cubs
 
-**Game Time:** 05:10 PM MT
+**Game Time:** 06:05 PM MT
 
 ---
 
 ## BETLABIQ PICK
 
-# Cincinnati Reds
+# Colorado Rockies
 
-**Confidence:** 81.5/100  
+**Confidence:** 75.7/100  
 **Tier:** High
 
 ---
@@ -19,7 +19,7 @@
 
 ✓ Starting pitcher edge
 
-✓ Pitcher regression edge
+✓ Team split vs pitcher hand
 
 ✓ Highest model probability among qualifying blowout-score plays
 
@@ -27,7 +27,7 @@
 
 ## Biggest Risk
 
-Check game status
+Monitor line movement and confirmed lineups.
 
 ---
 

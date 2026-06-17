@@ -1,17 +1,17 @@
 {
-  "date": "2026-06-16 00:00:00",
+  "date": "2026-06-17 00:00:00",
   "sport": "MLB",
-  "matchup": "New York Mets @ Cincinnati Reds",
-  "game_time": "05:10 PM MT",
-  "pick": "Cincinnati Reds",
+  "matchup": "Colorado Rockies @ Chicago Cubs",
+  "game_time": "06:05 PM MT",
+  "pick": "Colorado Rockies",
   "market": "Moneyline",
   "odds": "TBD",
-  "confidence": 81.5,
+  "confidence": 75.7,
   "tier": "High",
   "reason_1": "Starting pitcher edge",
-  "reason_2": "Pitcher regression edge",
+  "reason_2": "Team split vs pitcher hand",
   "reason_3": "Highest model probability among qualifying blowout-score plays",
-  "risk": "Check game status",
-  "blowout_score": 5.374,
-  "email_subject": "\ud83c\udfaf BetLabIQ Game of the Day | New York Mets @ Cincinnati Reds"
+  "risk": "Monitor line movement and confirmed lineups.",
+  "blowout_score": -5.162,
+  "email_subject": "\ud83c\udfaf BetLabIQ Game of the Day | Colorado Rockies @ Chicago Cubs"
 }
