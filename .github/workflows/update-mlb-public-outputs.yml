@@ -24,7 +24,7 @@ jobs:
           echo "Current directory:"
           pwd
           echo "MLB files found:"
-          find mlb -maxdepth 5 -type f
+          find mlb -maxdepth 6 -type f
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -52,5 +52,6 @@ jobs:
           git add mlb/data/public/public_games.json
           git add mlb/data/public/free_pick.json
           git add mlb/emails/generated/daily_free_pick.md
+          git add mlb/data/picks/free_pick_archive/
           git commit -m "Update MLB public outputs" || echo "No changes to commit"
           git push
