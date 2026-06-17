@@ -350,27 +350,27 @@ async function loadMlbTicker() {
       return;
     }
 
-    const tickerItems = games.map(game => {
+    coconst tickerItems = games.map(game => {
 
-      return `
-        <span class="mlb-ticker-item">
+  return `
+    <span class="mlb-ticker-item">
 
-          <span>
-            ${game.matchup || "MLB Matchup"}
-          </span>
+      <span>
+        ${game.matchup || "MLB Matchup"}
+      </span>
 
-          <span class="mlb-ticker-time">
-            ${game.game_time || "TBD"}
-          </span>
+      <span class="mlb-ticker-time">
+        ${game.game_time || "TBD"}
+      </span>
 
-          <span class="mlb-ticker-lock">
-            PICK LOCKED
-          </span>
+      <span class="mlb-ticker-lock">
+        PREMIUM
+      </span>
 
-        </span>
-      `;
+    </span>
+  `;
 
-    }).join('');
+}).join('<span class="mlb-ticker-divider">•</span>');
 
     track.innerHTML = tickerItems + tickerItems;
 
