@@ -49,14 +49,10 @@
 
   <!-- MLB TRACK RECORD -->
   <section class="mlb-results-strip" aria-label="BetLabIQ MLB track record">
-    <div class="mlb-results-card glass">
-      <div>
-        <p class="mlb-results-kicker">MLB Track Record</p>
-        <h3 id="resultsLastPick">Latest pick loading...</h3>
-        <p id="resultsLastStatus" class="mlb-results-status">Checking latest result...</p>
-      </div>
+    <div class="mlb-results-card glass results-only-card">
+      <p class="mlb-results-kicker">MLB Track Record</p>
 
-      <div class="mlb-results-metrics">
+      <div class="mlb-results-metrics results-centered">
         <div>
           <strong id="resultsRecord">0-0</strong>
           <span>Record</span>
@@ -66,7 +62,7 @@
           <span>Win Rate</span>
         </div>
         <div>
-          <strong id="resultsUnits">0.0</strong>
+          <strong id="resultsUnits">+0.0</strong>
           <span>Units</span>
         </div>
       </div>
@@ -306,13 +302,11 @@
     }
 
     async function loadMlbResultsSummary() {
-      const lastPickEl = document.getElementById("resultsLastPick");
-      const statusEl = document.getElementById("resultsLastStatus");
       const recordEl = document.getElementById("resultsRecord");
       const winRateEl = document.getElementById("resultsWinRate");
       const unitsEl = document.getElementById("resultsUnits");
 
-      if (!lastPickEl || !statusEl || !recordEl || !winRateEl || !unitsEl) return;
+      if (!recordEl || !winRateEl || !unitsEl) return;
 
       try {
         const response = await fetch("./mlb/data/public/results_summary.json?v=" + Date.now());
@@ -322,42 +316,16 @@
         }
 
         const summary = await response.json();
-        const lastPick = summary.last_pick || {};
-
-        const pickName = lastPick.pick || "No tracked pick yet";
-        const matchup = lastPick.matchup || "";
-        const result = lastPick.result || "Pending";
-
-        lastPickEl.textContent = pickName;
-
-        let resultIcon = "⏳";
-        let resultClass = "result-pending";
-
-        if (result === "Win") {
-          resultIcon = "✅";
-          resultClass = "result-win";
-        } else if (result === "Loss") {
-          resultIcon = "❌";
-          resultClass = "result-loss";
-        } else if (result === "Push") {
-          resultIcon = "➖";
-          resultClass = "result-pending";
-        }
-
-        statusEl.className = "mlb-results-status " + resultClass;
-        statusEl.textContent = `${resultIcon} ${result}${matchup ? " • " + matchup : ""}`;
 
         recordEl.textContent = summary.record || "0-0";
         winRateEl.textContent = summary.win_rate || "0.0%";
-        unitsEl.textContent = summary.units || "0.0";
+        unitsEl.textContent = summary.units || "+0.0";
 
       } catch (error) {
         console.error("MLB results error:", error);
-        lastPickEl.textContent = "Track record updating soon";
-        statusEl.textContent = "Results will appear after the next model check.";
         recordEl.textContent = "0-0";
         winRateEl.textContent = "0.0%";
-        unitsEl.textContent = "0.0";
+        unitsEl.textContent = "+0.0";
       }
     }
 
