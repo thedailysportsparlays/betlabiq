@@ -1,0 +1,16 @@
+{
+  "wins": 0,
+  "losses": 0,
+  "pushes": 0,
+  "pending": 0,
+  "record": "0-0",
+  "win_rate": "0.0%",
+  "units": "0.0",
+  "last_pick": {
+    "date": "",
+    "matchup": "",
+    "pick": "",
+    "result": "Pending"
+  },
+  "updated_at": ""
+}
