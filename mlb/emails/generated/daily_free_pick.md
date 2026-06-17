@@ -1,16 +1,16 @@
 # 🎯 GAME OF THE DAY
 
-## Colorado Rockies @ Chicago Cubs
+## San Francisco Giants @ Atlanta Braves
 
-**Game Time:** 06:05 PM MT
+**Game Time:** 05:15 PM MT
 
 ---
 
 ## BETLABIQ PICK
 
-# Colorado Rockies
+# Atlanta Braves
 
-**Confidence:** 75.7/100  
+**Confidence:** 73.1/100  
 **Tier:** High
 
 ---

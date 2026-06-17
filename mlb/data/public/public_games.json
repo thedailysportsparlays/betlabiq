@@ -1,81 +1,36 @@
 [
   {
-    "date": "2026-06-17 00:00:00",
+    "date": "2026-06-18 00:00:00",
     "sport": "MLB",
-    "matchup": "Colorado Rockies @ Chicago Cubs",
-    "game_time": "06:05 PM MT",
+    "matchup": "San Francisco Giants @ Atlanta Braves",
+    "game_time": "05:15 PM MT",
     "status": "Model reviewed",
     "public_label": "Pick available by email",
     "is_premium_locked": true
   },
   {
-    "date": "2026-06-17 00:00:00",
+    "date": "2026-06-18 00:00:00",
     "sport": "MLB",
-    "matchup": "Miami Marlins @ Philadelphia Phillies",
-    "game_time": "11:05 AM MT",
+    "matchup": "Minnesota Twins @ Texas Rangers",
+    "game_time": "12:35 PM MT",
     "status": "Model reviewed",
     "public_label": "Pick available by email",
     "is_premium_locked": true
   },
   {
-    "date": "2026-06-17 00:00:00",
+    "date": "2026-06-18 00:00:00",
     "sport": "MLB",
-    "matchup": "Tampa Bay Rays @ Los Angeles Dodgers",
-    "game_time": "01:10 PM MT",
+    "matchup": "St. Louis Cardinals @ Kansas City Royals",
+    "game_time": "05:40 PM MT",
     "status": "Model reviewed",
     "public_label": "Pick available by email",
     "is_premium_locked": true
   },
   {
-    "date": "2026-06-17 00:00:00",
-    "sport": "MLB",
-    "matchup": "Kansas City Royals @ Washington Nationals",
-    "game_time": "11:05 AM MT",
-    "status": "Model reviewed",
-    "public_label": "Pick available by email",
-    "is_premium_locked": true
-  },
-  {
-    "date": "2026-06-17 00:00:00",
+    "date": "2026-06-18 00:00:00",
     "sport": "MLB",
     "matchup": "Toronto Blue Jays @ Boston Red Sox",
-    "game_time": "04:45 PM MT",
-    "status": "Model reviewed",
-    "public_label": "Pick available by email",
-    "is_premium_locked": true
-  },
-  {
-    "date": "2026-06-17 00:00:00",
-    "sport": "MLB",
-    "matchup": "Chicago White Sox @ New York Yankees",
-    "game_time": "05:05 PM MT",
-    "status": "Model reviewed",
-    "public_label": "Pick available by email",
-    "is_premium_locked": true
-  },
-  {
-    "date": "2026-06-17 00:00:00",
-    "sport": "MLB",
-    "matchup": "Pittsburgh Pirates @ Athletics",
-    "game_time": "07:40 PM MT",
-    "status": "Model reviewed",
-    "public_label": "Pick available by email",
-    "is_premium_locked": true
-  },
-  {
-    "date": "2026-06-17 00:00:00",
-    "sport": "MLB",
-    "matchup": "Detroit Tigers @ Houston Astros",
-    "game_time": "12:10 PM MT",
-    "status": "Model reviewed",
-    "public_label": "Pick available by email",
-    "is_premium_locked": true
-  },
-  {
-    "date": "2026-06-17 00:00:00",
-    "sport": "MLB",
-    "matchup": "San Diego Padres @ St. Louis Cardinals",
-    "game_time": "12:15 PM MT",
+    "game_time": "11:35 AM MT",
     "status": "Model reviewed",
     "public_label": "Pick available by email",
     "is_premium_locked": true
