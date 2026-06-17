@@ -1,6 +1,17 @@
 {
-  "date": "",
-  "matchup": "",
-  "pick": "",
-  "confidence": 0
+  "date": "2026-06-16 00:00:00",
+  "sport": "MLB",
+  "matchup": "New York Mets @ Cincinnati Reds",
+  "game_time": "05:10 PM MT",
+  "pick": "Cincinnati Reds",
+  "market": "Moneyline",
+  "odds": "TBD",
+  "confidence": 81.5,
+  "tier": "High",
+  "reason_1": "Starting pitcher edge",
+  "reason_2": "Pitcher regression edge",
+  "reason_3": "Highest model probability among qualifying blowout-score plays",
+  "risk": "Check game status",
+  "blowout_score": 5.374,
+  "email_subject": "\ud83c\udfaf BetLabIQ Game of the Day | New York Mets @ Cincinnati Reds"
 }
