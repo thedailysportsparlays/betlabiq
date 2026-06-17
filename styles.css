@@ -568,3 +568,8 @@ grid-template-columns:1fr;
     animation-duration: 110s;
   }
 }
+.mlb-ticker-divider {
+  color: rgba(94,240,163,.65);
+  font-weight: 900;
+  margin: 0 8px;
+}
