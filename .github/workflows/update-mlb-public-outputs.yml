@@ -2,6 +2,11 @@ name: Update MLB Public Outputs
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "mlb/data/raw/MLB_Prediction_Model.xlsx"
+      - "mlb/scripts/build_public_mlb_outputs.py"
+      - ".github/workflows/update-mlb-public-outputs.yml"
 
 permissions:
   contents: write
@@ -14,6 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Show MLB folder
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "MLB folder:"
+          find mlb -maxdepth 4 -type f
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -21,13 +33,14 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install pandas openpyxl
 
       - name: Build MLB public outputs
         run: |
           python mlb/scripts/build_public_mlb_outputs.py
 
-      - name: Validate JSON files
+      - name: Validate generated JSON files
         run: |
           python -m json.tool mlb/data/public/public_games.json > /dev/null
           python -m json.tool mlb/data/public/free_pick.json > /dev/null
