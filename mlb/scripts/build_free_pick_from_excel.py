@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -14,6 +15,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 INPUT_FILE = BASE_DIR / "data" / "raw" / "MLB_Prediction_Model.xlsx"
 PUBLIC_DIR = BASE_DIR / "data" / "public"
 EMAIL_DIR = BASE_DIR / "emails" / "generated"
+ARCHIVE_DIR = BASE_DIR / "data" / "picks" / "free_pick_archive"
 
 PUBLIC_GAMES_JSON = PUBLIC_DIR / "public_games.json"
 FREE_PICK_JSON = PUBLIC_DIR / "free_pick.json"
@@ -23,6 +25,7 @@ WEBSITE_URL = "https://thedailysportsparlays.github.io/betlabiq/"
 
 PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 EMAIL_DIR.mkdir(parents=True, exist_ok=True)
+ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # ==============================
@@ -54,6 +57,20 @@ def clean_game_date(df):
     return df
 
 
+def clean_game_pk(value):
+    try:
+        return str(int(float(value)))
+    except Exception:
+        return str(value).strip()
+
+
+def slugify(value):
+    value = str(value).lower().strip()
+    value = re.sub(r"[^a-z0-9]+", "_", value)
+    value = re.sub(r"_+", "_", value)
+    return value.strip("_")
+
+
 # ==============================
 # Load Workbook
 # ==============================
@@ -77,6 +94,7 @@ print(list(daily_winners.columns))
 
 required_columns = [
     "game_date",
+    "game_pk",
     "game_time",
     "game",
     "moneyline_pick",
@@ -111,12 +129,12 @@ daily_winners["blowout_score"] = pd.to_numeric(
 )
 
 daily_winners = daily_winners.dropna(
-    subset=["game_date", "model_probability", "blowout_score"]
+    subset=["game_date", "game_pk", "model_probability", "blowout_score"]
 )
 
 if daily_winners.empty:
     raise ValueError(
-        "No usable rows found after cleaning game_date, model_probability, and blowout_score."
+        "No usable rows found after cleaning game_date, game_pk, model_probability, and blowout_score."
     )
 
 
@@ -150,6 +168,7 @@ for _, row in daily_winners.iterrows():
     public_games.append({
         "date": str(safe_value(row, "game_date", "")),
         "sport": "MLB",
+        "game_pk": clean_game_pk(safe_value(row, "game_pk", "")),
         "matchup": str(safe_value(row, "game", "")),
         "game_time": str(safe_value(row, "game_time", "")),
         "status": "Model reviewed",
@@ -189,17 +208,24 @@ confidence_percent = probability_to_percent(
     safe_value(top_pick, "model_probability", 0)
 )
 
+game_date = str(safe_value(top_pick, "game_date", ""))
+game_pk = clean_game_pk(safe_value(top_pick, "game_pk", ""))
+pick_name = str(safe_value(top_pick, "moneyline_pick", ""))
+pick_id = f"{game_date}_{game_pk}_{slugify(pick_name)}"
+
 
 # ==============================
 # Build free_pick.json
 # ==============================
 
 free_pick = {
-    "date": str(safe_value(top_pick, "game_date", "")),
+    "pick_id": pick_id,
+    "date": game_date,
     "sport": "MLB",
+    "game_pk": game_pk,
     "matchup": str(safe_value(top_pick, "game", "")),
     "game_time": str(safe_value(top_pick, "game_time", "")),
-    "pick": str(safe_value(top_pick, "moneyline_pick", "")),
+    "pick": pick_name,
     "market": "Moneyline",
     "odds": "TBD",
     "confidence": confidence_percent,
@@ -215,10 +241,24 @@ free_pick = {
         )
     ),
     "blowout_score": round(float(safe_value(top_pick, "blowout_score", 0)), 3),
+    "result_status": "Pending",
+    "source": "daily_winners",
+    "created_at": datetime.now().isoformat(),
     "email_subject": f"🎯 BetLabIQ Today’s Pick | {safe_value(top_pick, 'game', 'MLB')}"
 }
 
 with open(FREE_PICK_JSON, "w", encoding="utf-8") as f:
+    json.dump(free_pick, f, indent=2)
+
+
+# ==============================
+# Archive Daily Free Pick
+# This creates a permanent receipt for the result tracker.
+# ==============================
+
+archive_file = ARCHIVE_DIR / f"{game_date}.json"
+
+with open(archive_file, "w", encoding="utf-8") as f:
     json.dump(free_pick, f, indent=2)
 
 
@@ -282,8 +322,10 @@ with open(DAILY_EMAIL_MD, "w", encoding="utf-8") as f:
 
 print("Created public games JSON:", PUBLIC_GAMES_JSON)
 print("Created free pick JSON:", FREE_PICK_JSON)
+print("Archived free pick:", archive_file)
 print("Created Beehiiv email draft:", DAILY_EMAIL_MD)
 print("Selected free pick:", free_pick["pick"])
 print("Selected matchup:", free_pick["matchup"])
+print("Selected game_pk:", free_pick["game_pk"])
 print("Selected confidence:", free_pick["confidence"])
 print("Selected blowout score:", free_pick["blowout_score"])
