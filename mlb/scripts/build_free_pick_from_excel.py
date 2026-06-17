@@ -1,13 +1,8 @@
 import json
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
 
-
-# ==============================
-# File Paths
-# ==============================
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 
@@ -23,10 +18,6 @@ PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 EMAIL_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# ==============================
-# Helper Functions
-# ==============================
-
 def safe_value(row, column, default=""):
     value = row.get(column, default)
     if pd.isna(value):
@@ -35,23 +26,11 @@ def safe_value(row, column, default=""):
 
 
 def probability_to_percent(value):
-    try:
-        value = float(value)
-        if value <= 1:
-            return round(value * 100, 1)
-        return round(value, 1)
-    except Exception:
-        return 0
+    value = float(value)
+    if value <= 1:
+        return round(value * 100, 1)
+    return round(value, 1)
 
-
-def clean_date_column(df, column="game_date"):
-    df[column] = pd.to_datetime(df[column], errors="coerce").dt.date
-    return df
-
-
-# ==============================
-# Load Workbook
-# ==============================
 
 print(f"Looking for workbook at: {INPUT_FILE}")
 
@@ -64,11 +43,6 @@ daily_winners = pd.read_excel(INPUT_FILE, sheet_name="daily_winners")
 
 print("daily_winners columns:")
 print(list(daily_winners.columns))
-
-
-# ==============================
-# Validate Columns
-# ==============================
 
 required_columns = [
     "game_date",
@@ -88,13 +62,6 @@ missing = [col for col in required_columns if col not in daily_winners.columns]
 if missing:
     raise ValueError(f"Missing required columns in daily_winners tab: {missing}")
 
-
-# ==============================
-# Clean Data
-# ==============================
-
-daily_winners = clean_date_column(daily_winners, "game_date")
-
 daily_winners["model_probability"] = pd.to_numeric(
     daily_winners["model_probability"],
     errors="coerce"
@@ -105,44 +72,12 @@ daily_winners["blowout_score"] = pd.to_numeric(
     errors="coerce"
 )
 
-daily_winners = daily_winners.dropna(
-    subset=["game_date", "model_probability", "blowout_score"]
-)
+daily_winners = daily_winners.dropna(subset=["model_probability", "blowout_score"])
 
 if daily_winners.empty:
-    raise ValueError(
-        "No usable rows found after cleaning game_date, model_probability, and blowout_score."
-    )
+    raise ValueError("No usable rows found after cleaning model_probability and blowout_score.")
 
-
-# ==============================
-# Filter To Tomorrow's Games
-# ==============================
-
-TARGET_DATE = (datetime.now() + timedelta(days=1)).date()
-
-print(f"Target date for free pick: {TARGET_DATE}")
-
-daily_winners = daily_winners[
-    daily_winners["game_date"] == TARGET_DATE
-].copy()
-
-if daily_winners.empty:
-    available_dates = sorted(
-        [str(x) for x in daily_winners["game_date"].dropna().unique()]
-    )
-
-    raise ValueError(
-        f"No games found for target date: {TARGET_DATE}. "
-        f"Check that your workbook contains tomorrow's games."
-    )
-
-
-# ==============================
-# Public Website Games
-# Show games only. Do NOT reveal picks.
-# ==============================
-
+# Public website games: show games, but do NOT reveal picks.
 public_games = []
 
 for _, row in daily_winners.iterrows():
@@ -160,11 +95,9 @@ with open(PUBLIC_GAMES_JSON, "w", encoding="utf-8") as f:
     json.dump(public_games, f, indent=2)
 
 
-# ==============================
-# Free Pick Selection Rule
+# Free pick rule:
 # Highest model_probability
 # AND blowout_score > 3 OR blowout_score < -3
-# ==============================
 
 eligible_picks = daily_winners[
     (daily_winners["blowout_score"] > 3) |
@@ -173,8 +106,7 @@ eligible_picks = daily_winners[
 
 if eligible_picks.empty:
     raise ValueError(
-        f"No eligible free pick found for {TARGET_DATE}. "
-        "Need blowout_score > 3 or blowout_score < -3."
+        "No eligible free pick found. Need blowout_score > 3 or blowout_score < -3."
     )
 
 eligible_picks = eligible_picks.sort_values(
@@ -187,11 +119,6 @@ top_pick = eligible_picks.iloc[0]
 confidence_percent = probability_to_percent(
     safe_value(top_pick, "model_probability", 0)
 )
-
-
-# ==============================
-# Build free_pick.json
-# ==============================
 
 free_pick = {
     "date": str(safe_value(top_pick, "game_date", "")),
@@ -206,13 +133,7 @@ free_pick = {
     "reason_1": str(safe_value(top_pick, "key_reason_1", "Model edge")),
     "reason_2": str(safe_value(top_pick, "key_reason_2", "Matchup advantage")),
     "reason_3": "Highest model probability among qualifying blowout-score plays",
-    "risk": str(
-        safe_value(
-            top_pick,
-            "risk_flag",
-            "Monitor line movement and confirmed lineups."
-        )
-    ),
+    "risk": str(safe_value(top_pick, "risk_flag", "Monitor line movement and confirmed lineups.")),
     "blowout_score": round(float(safe_value(top_pick, "blowout_score", 0)), 3),
     "email_subject": f"🎯 BetLabIQ Game of the Day | {safe_value(top_pick, 'game', 'MLB')}"
 }
@@ -220,10 +141,6 @@ free_pick = {
 with open(FREE_PICK_JSON, "w", encoding="utf-8") as f:
     json.dump(free_pick, f, indent=2)
 
-
-# ==============================
-# Build Beehiiv Email Draft
-# ==============================
 
 email_body = f"""# 🎯 GAME OF THE DAY
 
@@ -266,15 +183,7 @@ No fake locks. No guarantees. Just one game we believe offers value today.
 with open(DAILY_EMAIL_MD, "w", encoding="utf-8") as f:
     f.write(email_body)
 
-
-# ==============================
-# Logs
-# ==============================
-
 print("Created public games JSON:", PUBLIC_GAMES_JSON)
 print("Created free pick JSON:", FREE_PICK_JSON)
 print("Created Beehiiv email draft:", DAILY_EMAIL_MD)
 print("Selected free pick:", free_pick["pick"])
-print("Selected matchup:", free_pick["matchup"])
-print("Selected confidence:", free_pick["confidence"])
-print("Selected blowout score:", free_pick["blowout_score"])
