@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-18 00:00:00",
+  "date": "2026-06-18",
   "sport": "MLB",
   "matchup": "San Francisco Giants @ Atlanta Braves",
   "game_time": "05:15 PM MT",
@@ -10,8 +10,8 @@
   "tier": "High",
   "reason_1": "Starting pitcher edge",
   "reason_2": "Team split vs pitcher hand",
-  "reason_3": "Highest model probability among qualifying blowout-score plays",
+  "reason_3": "Highest-rated qualifying play on today's board",
   "risk": "Monitor line movement and confirmed lineups.",
   "blowout_score": 4.951,
-  "email_subject": "\ud83c\udfaf BetLabIQ Game of the Day | San Francisco Giants @ Atlanta Braves"
+  "email_subject": "\ud83c\udfaf BetLabIQ Today\u2019s Pick | San Francisco Giants @ Atlanta Braves"
 }

@@ -1,36 +1,43 @@
-# 🎯 GAME OF THE DAY
+# 🎯 TODAY'S PICK
 
-## San Francisco Giants @ Atlanta Braves
+🟢 **Atlanta Braves**
 
-**Game Time:** 05:15 PM MT
+**Matchup:** San Francisco Giants @ Atlanta Braves
 
----
+**First Pitch:** 05:15 PM MT
 
-## BETLABIQ PICK
-
-# Atlanta Braves
-
-**Confidence:** 73.1/100  
-**Tier:** High
+**Confidence:** 73.1%
 
 ---
 
-## Why We Like It
+### Why We Like It
 
 ✓ Starting pitcher edge
 
 ✓ Team split vs pitcher hand
 
-✓ Highest model probability among qualifying blowout-score plays
+✓ Highest-rated qualifying play on today's board
 
 ---
 
-## Biggest Risk
+### One Thing To Know
+
+Today’s featured play was selected after reviewing the full MLB board for matchup strength, model probability, and qualifying blowout-score edge.
+
+---
+
+### Risk To Watch
 
 Monitor line movement and confirmed lineups.
 
 ---
 
-No fake locks. No guarantees. Just one game we believe offers value today.
+Today’s featured play was one of several games reviewed by the model this morning.
+
+View today’s MLB board:
+
+https://thedailysportsparlays.github.io/betlabiq/
+
+See you tomorrow.
 
 — BetLabIQ

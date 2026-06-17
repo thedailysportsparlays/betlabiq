@@ -1,38 +1,38 @@
 [
   {
-    "date": "2026-06-18 00:00:00",
+    "date": "2026-06-18",
     "sport": "MLB",
     "matchup": "San Francisco Giants @ Atlanta Braves",
     "game_time": "05:15 PM MT",
     "status": "Model reviewed",
-    "public_label": "Pick available by email",
+    "public_label": "Premium board available",
     "is_premium_locked": true
   },
   {
-    "date": "2026-06-18 00:00:00",
+    "date": "2026-06-18",
     "sport": "MLB",
     "matchup": "Minnesota Twins @ Texas Rangers",
     "game_time": "12:35 PM MT",
     "status": "Model reviewed",
-    "public_label": "Pick available by email",
+    "public_label": "Premium board available",
     "is_premium_locked": true
   },
   {
-    "date": "2026-06-18 00:00:00",
+    "date": "2026-06-18",
     "sport": "MLB",
     "matchup": "St. Louis Cardinals @ Kansas City Royals",
     "game_time": "05:40 PM MT",
     "status": "Model reviewed",
-    "public_label": "Pick available by email",
+    "public_label": "Premium board available",
     "is_premium_locked": true
   },
   {
-    "date": "2026-06-18 00:00:00",
+    "date": "2026-06-18",
     "sport": "MLB",
     "matchup": "Toronto Blue Jays @ Boston Red Sox",
     "game_time": "11:35 AM MT",
     "status": "Model reviewed",
-    "public_label": "Pick available by email",
+    "public_label": "Premium board available",
     "is_premium_locked": true
   }
 ]
