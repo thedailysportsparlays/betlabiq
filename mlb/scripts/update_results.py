@@ -1,9 +1,13 @@
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 import requests
 
+
+# ==============================
+# File Paths
+# ==============================
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 
@@ -15,6 +19,10 @@ RESULTS_SUMMARY_JSON = PUBLIC_DIR / "results_summary.json"
 
 PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 
+
+# ==============================
+# Helpers
+# ==============================
 
 def load_json(path, default):
     if not path.exists():
@@ -29,8 +37,19 @@ def save_json(path, data):
         json.dump(data, f, indent=2)
 
 
-def get_yesterday_date():
-    return (datetime.now() - timedelta(days=1)).date()
+def get_latest_archive_file():
+    archive_files = sorted(
+        ARCHIVE_DIR.glob("*.json"),
+        key=lambda path: path.name,
+        reverse=True
+    )
+
+    if not archive_files:
+        raise FileNotFoundError(
+            f"No archived picks found in {ARCHIVE_DIR}"
+        )
+
+    return archive_files[0]
 
 
 def get_game_result_by_game_pk(game_pk):
@@ -187,18 +206,14 @@ def build_summary(history):
     }
 
 
+# ==============================
+# Main
+# ==============================
+
 def main():
-    target_date = get_yesterday_date()
-    archive_file = ARCHIVE_DIR / f"{target_date}.json"
+    archive_file = get_latest_archive_file()
 
-    print(f"Checking archived pick for: {target_date}")
-    print(f"Archive file: {archive_file}")
-
-    if not archive_file.exists():
-        raise FileNotFoundError(
-            f"No archived pick found for {target_date}. "
-            "Make sure yesterday's free pick was archived."
-        )
+    print(f"Checking latest archived pick: {archive_file}")
 
     pick = load_json(archive_file, {})
     game_pk = pick.get("game_pk", "")
