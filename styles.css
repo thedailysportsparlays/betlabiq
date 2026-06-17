@@ -682,3 +682,11 @@ grid-template-columns:1fr;
     font-size: 18px;
   }
 }
+.results-only-card {
+  justify-content: center;
+  text-align: center;
+}
+
+.results-centered {
+  margin: 0 auto;
+}
