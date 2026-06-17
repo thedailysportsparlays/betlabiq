@@ -573,3 +573,112 @@ grid-template-columns:1fr;
   font-weight: 900;
   margin: 0 8px;
 }
+
+/* MLB RESULTS TRACK RECORD */
+
+.mlb-results-strip {
+  width: 100%;
+  padding: 18px 20px 0;
+  position: relative;
+  z-index: 15;
+}
+
+.mlb-results-card {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+    rgba(7,17,31,.72);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.mlb-results-kicker {
+  color: var(--green, #5ef0a3);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.mlb-results-card h3 {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 24px);
+  letter-spacing: -.03em;
+}
+
+.mlb-results-status {
+  color: var(--muted, #94a3b8);
+  margin: 7px 0 0;
+  font-weight: 700;
+}
+
+.mlb-results-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(90px, 1fr));
+  gap: 10px;
+  min-width: 360px;
+}
+
+.mlb-results-metrics div {
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+}
+
+.mlb-results-metrics strong {
+  display: block;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.mlb-results-metrics span {
+  color: var(--muted, #94a3b8);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.result-win {
+  color: #5ef0a3;
+}
+
+.result-loss {
+  color: #f87171;
+}
+
+.result-pending {
+  color: #facc15;
+}
+
+@media (max-width: 800px) {
+  .mlb-results-strip {
+    padding: 14px 14px 0;
+  }
+
+  .mlb-results-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px;
+  }
+
+  .mlb-results-metrics {
+    min-width: 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mlb-results-metrics strong {
+    font-size: 18px;
+  }
+}
