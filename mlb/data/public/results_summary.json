@@ -1,16 +1,16 @@
 {
   "wins": 0,
-  "losses": 0,
+  "losses": 1,
   "pushes": 0,
-  "pending": 1,
-  "record": "0-0",
+  "pending": 0,
+  "record": "0-1",
   "win_rate": "0.0%",
-  "units": "+0.0",
+  "units": "-1.0",
   "last_pick": {
     "date": "2026-06-18",
     "matchup": "San Francisco Giants @ Atlanta Braves",
     "pick": "Atlanta Braves",
-    "result": "Pending"
+    "result": "Loss"
   },
-  "updated_at": "2026-08-31T20:29:33.022011"
+  "updated_at": "2026-09-01T16:14:56.271345"
 }
